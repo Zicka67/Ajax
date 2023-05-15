@@ -21,7 +21,7 @@ Asynchronous JavaScript And XML
  Il rend le site plus reéactif et dynamique, plus rapide a charger.
  Il va permettre d'envoyer les données d'un formulaire sans recharger toute la page.
  
- Ajout également de bootstrap + bootswatch
+ Ajout également de bootstrap + bootswatch :
  
- https://getbootstrap.com/
- https://bootswatch.com/lux/
+ - https://getbootstrap.com/
+ - https://bootswatch.com/lux/
