@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Video;
+use App\Entity\Visibility;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -42,7 +43,9 @@ class VideoRepository extends ServiceEntityRepository
     public function new(): Video
     {
         $video = new Video();
+        $visibility = $this->getEntityManager()->find(Visibility::class, Visibility::PRIVATE);
 
+        $video->setVisibility($visibility);
         return $video;
     }
 

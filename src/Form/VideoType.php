@@ -22,10 +22,15 @@ class VideoType extends AbstractType
                 'label' => "Titre (obligatoire)"
             ])
             ->add('description', TextareaType::class)
-            ->add('thumbnail', FileType::class)
-            ->add('videoFile', FileType::class)
+            ->add('thumbnail', FileType::class, [
+                'label' => "Mignature"
+            ])
+            ->add('videoFile', FileType::class, [
+                'label' => "Vidéo"
+            ])
             ->add('visibility', EntityType::class, [
                 'class' => Visibility::class,
+                'label' => 'Visibilité',
                 'choice_label' => 'label',
                 'expanded' => true,
                 'multiple' => false

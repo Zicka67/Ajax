@@ -8,6 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: VisibilityRepository::class)]
 class Visibility
 {
+    const PUBLIC = 1;
+    const PRIVATE = 2;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
