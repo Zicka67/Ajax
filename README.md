@@ -3,6 +3,9 @@
 Découverte d'AJAX :
 
 - Installation de NODE.js
+- https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+- https://nodejs.org/en/download
+
 - composer require symfony/webpack-encore-bundle
 - npm install
 - composer update
