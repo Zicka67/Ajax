@@ -3,6 +3,9 @@
 Découverte d'AJAX :
 
 - Installation de NODE.js
+- https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+- https://nodejs.org/en/download
+
 - composer require symfony/webpack-encore-bundle
 - npm install
 - composer update
@@ -17,3 +20,8 @@ Asynchronous JavaScript And XML
  
  Il rend le site plus reéactif et dynamique, plus rapide a charger.
  Il va permettre d'envoyer les données d'un formulaire sans recharger toute la page.
+ 
+ Ajout également de bootstrap + bootswatch :
+ 
+ - https://getbootstrap.com/
+ - https://bootswatch.com/lux/
