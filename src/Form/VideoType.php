@@ -21,9 +21,13 @@ class VideoType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => "Titre (obligatoire)"
             ])
-            ->add('description', TextareaType::class)
+            ->add('description', TextareaType::class, [
+                'required' => false
+            ])
+
             ->add('thumbnail', FileType::class, [
-                'label' => "Mignature"
+                'label' => "Mignature",
+                'required' => false
             ])
             ->add('videoFile', FileType::class, [
                 'label' => "Vidéo"
