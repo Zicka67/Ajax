@@ -3,10 +3,11 @@
 namespace App\Controller;
 
 use App\Form\VideoType;
-use App\Repository\VideoRepository;
 use App\Services\VideoService;
+use App\Repository\VideoRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -24,12 +25,15 @@ class VideoController extends AbstractController
         $response = null;
         if($videoForm->isSubmitted()) {
             $response = $videoService->handleVideoForm($videoForm);
+            if ($response instanceof JsonResponse) {
+                return $response;
+            }
         }
 
         return $this->render('video/index.html.twig', [
             'form'=>$videoForm->createView(),
-            'videos' => $videoRepository->findAll(),
             'response' => $response,
+            'videos' => $videoRepository->findAll(),
         ]);
     }
 }

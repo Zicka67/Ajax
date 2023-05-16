@@ -43,6 +43,7 @@ class VideoService
 
         if (!$uploadedThumbnail){
             $video->setThumbnail(null);
+            return new JsonResponse(["message" => "No thumbnail uploaded."]); 
         } else {
             $newFileName = $this->renameUploadedFile($uploadedThumbnail, $this->parameters->get('thumbnails.upload_directory'));
             $video->setThumbnail($newFileName);
@@ -64,9 +65,15 @@ class VideoService
 
     public function handleInValidForm(FormInterface $videoForm): JsonResponse
     {
-        return new JsonResponse( [
-            "code" => Video::VIDEO_INVALID_FORM
-        ]);
+        $errors = [];
+    foreach ($videoForm->getErrors(true) as $error) {
+        $errors[] = $error->getMessage();
+    }
+
+    return new JsonResponse([
+        "code" => Video::VIDEO_INVALID_FORM,
+        "errors" => $errors
+    ]);
     }
 
     public function renameUploadedFile(UploadedFile $uploadedFile, string $directory)
