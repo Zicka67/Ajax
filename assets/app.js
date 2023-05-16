@@ -18,3 +18,15 @@ formVideo.addEventListener('submit', function (e) {
             handleResponse(json);
         });
 });
+
+const handleResponse = function (response) {
+    // removeErrors();
+    switch(response.code) {
+        case 'VIDEO_ADDED_SUCCESSFULLY':
+            videosList.insertAdjacentHTML('beforeend', response.html);
+            break;
+        // case 'VIDEO_INVALID_FORM':
+        //     handleErrors(response.errors);
+        //     break;
+    }
+}
