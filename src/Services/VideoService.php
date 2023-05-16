@@ -8,11 +8,14 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Twig\Environment;
 
 class VideoService 
 {
 
-    public function __construct(private EntityManagerInterface $entityManager, private ParameterBagInterface $parameters)
+    public function __construct(private EntityManagerInterface $entityManager, 
+                                private ParameterBagInterface $parameters,
+                                private Environment $environment)
     {
         
     }
@@ -39,9 +42,10 @@ class VideoService
         $uploadedVideo = $videoForm['videoFile']->getData();
 
         if (!$uploadedThumbnail){
-            $video->setThumbnail(null   );
+            $video->setThumbnail(null);
         } else {
             $newFileName = $this->renameUploadedFile($uploadedThumbnail, $this->parameters->get('thumbnails.upload_directory'));
+            $video->setThumbnail($newFileName);
         }
 
         $newFileName = $this->renameUploadedFile($uploadedVideo, $this->parameters->get('videos.upload_directory'));
@@ -52,7 +56,9 @@ class VideoService
 
         return new JsonResponse( [
             'code' => Video::VIDEO_ADDED_SUCCESSFULLY,
-            'html' => ""
+            'html' => $this->environment->render('video/video.html.twig', [
+            'video' => $video
+            ])
         ]);
     }
 
